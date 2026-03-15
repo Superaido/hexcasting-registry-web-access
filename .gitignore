@@ -1,0 +1,17 @@
+# Virtual environment
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Environment variables (in case you add secrets later)
+.env
+
+# OS clutter
+.DS_Store        # Mac
+Thumbs.db        # Windows
+
+# Editor folders
+.vscode/
+.idea/
