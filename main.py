@@ -7,13 +7,14 @@ app = FastAPI()
 with open("hexbug_registry.json", encoding="utf-8") as f:
     DATA = json.load(f)
 
-@app.get("/get-id")
+@app.get("/get-id/{name}")
 def get_id(name: str):
-    for pattern in DATA["patterns"]:
+    for pattern in DATA["patterns"].values():
         if pattern["name"] == name:
             return pattern["id"]
+    raise HTTPException(status_code=404, detail=f"No pattern with name '{name}'")
 
-@app.get("get-data/{path:path}")
+@app.get("/get-data/{path:path}")
 def get_data(path: str):
     # Split the URL path into keys
     keys = [k for k in path.strip("/").split("/") if k]
